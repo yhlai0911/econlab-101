@@ -1,0 +1,64 @@
+{
+  "chapter": 3,
+  "title": "一週 168 小時：選擇、機會成本與 PPF",
+  "duration": 360,
+  "placement": "CH03 第一個概念展頁之後，立即練習之前",
+  "concept_ids": [
+    "scarcity",
+    "choice",
+    "opportunity-cost",
+    "ppf",
+    "comparative-advantage"
+  ],
+  "music_prompt": "Instrumental only, no vocals. Warm curious educational documentary underscore for first-year economics. Soft marimba, plucked strings, subtle hand percussion, gentle pulse around 84 BPM. The music should suggest choices and trade-offs without drama. Sparse arrangement, clean mix, no drops, leave wide space for Mandarin narration.",
+  "scenes": [
+    {
+      "id": "s1",
+      "start": 0,
+      "end": 55,
+      "duration": 55,
+      "title": "一週 168 小時",
+      "transcript": "audio/voice/s1.txt"
+    },
+    {
+      "id": "s2",
+      "start": 55,
+      "end": 120,
+      "duration": 65,
+      "title": "資源籌碼只能放一次",
+      "transcript": "audio/voice/s2.txt"
+    },
+    {
+      "id": "s3",
+      "start": 120,
+      "end": 190,
+      "duration": 70,
+      "title": "機會成本不是所有放棄的總和",
+      "transcript": "audio/voice/s3.txt"
+    },
+    {
+      "id": "s4",
+      "start": 190,
+      "end": 255,
+      "duration": 65,
+      "title": "PPF 把限制畫成邊界",
+      "transcript": "audio/voice/s4.txt"
+    },
+    {
+      "id": "s5",
+      "start": 255,
+      "end": 320,
+      "duration": 65,
+      "title": "比較利益與交換",
+      "transcript": "audio/voice/s5.txt"
+    },
+    {
+      "id": "s6",
+      "start": 320,
+      "end": 360,
+      "duration": 40,
+      "title": "回到你的決策",
+      "transcript": "audio/voice/s6.txt"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+media/*/audio/*.wav
+media/*/audio/*.m4a
+media/*/audio/music/*.mp3
+media/*/audio/voice/*.wav
+media/*/audio/voice/*.json
+media/*/renders/*.mp4

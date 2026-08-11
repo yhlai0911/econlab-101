@@ -1,0 +1,73 @@
+{
+  "chapter": 19,
+  "title": "能源衝擊下的青城市：AD、SRAS 與政策兩難",
+  "duration": 420,
+  "placement": "CH19 總合需求與短期總合供給定義之後、政策比較之前",
+  "concept_ids": [
+    "aggregate-demand",
+    "aggregate-supply",
+    "demand-shock",
+    "supply-shock",
+    "stagflation",
+    "policy-lags"
+  ],
+  "music_prompt": "Instrumental only, no vocals. Serious but approachable macroeconomics documentary underscore. Low warm synth pulse, soft piano, muted percussion, 80 BPM. Start stable, introduce subtle tension during the energy shock, then become reflective. No cinematic booms, no dramatic drops, leave clear space for Mandarin narration.",
+  "scenes": [
+    {
+      "id": "s1",
+      "start": 0,
+      "end": 62,
+      "duration": 62,
+      "title": "整座城市是一個相互連動的系統",
+      "transcript": "audio/voice/s1.txt"
+    },
+    {
+      "id": "s2",
+      "start": 62,
+      "end": 125,
+      "duration": 63,
+      "title": "總合需求由四股支出構成",
+      "transcript": "audio/voice/s2.txt"
+    },
+    {
+      "id": "s3",
+      "start": 125,
+      "end": 205,
+      "duration": 80,
+      "title": "需求衝擊：AD 右移",
+      "transcript": "audio/voice/s3.txt"
+    },
+    {
+      "id": "s4",
+      "start": 205,
+      "end": 275,
+      "duration": 70,
+      "title": "供給衝擊：能源成本上升",
+      "transcript": "audio/voice/s4.txt"
+    },
+    {
+      "id": "s5",
+      "start": 275,
+      "end": 330,
+      "duration": 55,
+      "title": "停滯性通膨與政策兩難",
+      "transcript": "audio/voice/s5.txt"
+    },
+    {
+      "id": "s6",
+      "start": 330,
+      "end": 385,
+      "duration": 55,
+      "title": "政策傳導需要時間",
+      "transcript": "audio/voice/s6.txt"
+    },
+    {
+      "id": "s7",
+      "start": 385,
+      "end": 420,
+      "duration": 35,
+      "title": "模型提供條件式推論",
+      "transcript": "audio/voice/s7.txt"
+    }
+  ]
+}

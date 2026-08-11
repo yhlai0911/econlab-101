@@ -1,0 +1,13 @@
+{
+  "name": "econlab-101",
+  "version": "0.6.0",
+  "private": true,
+  "description": "Three genuine mechanism-animation chapter MVPs for first-year economics.",
+  "scripts": {
+    "serve": "python3 -m http.server 4173",
+    "build:standalone": "python3 scripts/build_standalone.py",
+    "test": "python3 -m unittest discover -s tests -v",
+    "validate:browser": "python3 scripts/validate_browser.py",
+    "proof": "python3 scripts/render_proof_clips.py"
+  }
+}

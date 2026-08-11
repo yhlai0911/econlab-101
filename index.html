@@ -1,42 +1,21 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#08111d" />
-  <meta name="description" content="EconLab 101 初學者焦點版：Bade／Parkin《基礎經濟學》第 4 章需求與供給互動教學。" />
-  <title>EconLab 101｜初學者焦點版</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111c">
+<title>EconLab 101 v0.6｜三種章節動畫 MVP</title>
+<meta name="description" content="Bade／Parkin 基礎經濟學三種不同知識型態的互動章節與真正機制動畫 MVP。">
+<link rel="stylesheet" href="assets/platform.css">
 </head>
-<body>
-<div id="app" class="app">
-  <header class="header">
-    <div class="brand"><span class="brand-mark">E</span><span><strong>EconLab 101</strong><small>需求與供給</small></span></div>
-    <div class="scene-meta"><strong id="sceneTitle">決策現場</strong><span id="sceneCount">第 1／6 幕</span></div>
-    <div><span class="teacher-badge">教師授課</span><button id="menuBtn" class="menu-button" aria-label="開啟選單">⋯</button></div>
-  </header>
-  <div class="progress-shell"><div class="progress-track"><i id="progressBar"></i></div></div>
-  <div id="teacherStrip" class="teacher-strip"><span>← → 切換場景</span><span>F 全螢幕</span><span class="timer" id="timerText">00:00</span><button id="teacherNoteQuick">本幕提示</button></div>
-  <main><section id="stage" class="scene" aria-live="polite"></section></main>
-  <footer class="footer"><div class="footer-inner"><button id="prevBtn" class="nav-btn">← 上一幕</button><div class="footer-center"><strong id="footerScene">決策現場</strong><span>一次只學一件事</span></div><button id="nextBtn" class="nav-btn primary">下一幕 →</button></div></footer>
+<body><div class="app" id="app">
+<header class="topbar"><div class="brand"><span class="brand-mark">E</span><span><strong>EconLab 101</strong><small>互動教科書＋機制動畫</small></span></div><nav class="chapter-tabs" id="chapterTabs"></nav><div class="top-actions"><button id="restartAnimation">重播動畫</button><button id="teacherMode">教師模式</button><button id="chapterMenu" class="mobile-only">章節</button></div></header>
+<section class="hero"><div class="hero-grid"><div><span class="eyebrow" id="chapterType"></span><h1><span id="chapterNumber"></span><br><span id="chapterTitle"></span></h1><p id="chapterSubtitle"></p></div><article class="hero-hook"><span>本章要解決的真實問題</span><strong id="chapterHook"></strong><small>先形成問題，再讀、看、操作、作答與決策。</small></article></div></section>
+<section class="chapter-map"><div class="map-row" id="pageMap"></div></section>
+<section class="book-shell"><article class="book"><div id="spreads"></div><div class="book-nav"><button id="prevPage">← 上一頁</button><div class="dots" id="pageDots"></div><button id="nextPage" class="primary">下一頁 →</button></div></article></section>
+<section class="model-section"><div class="section-head"><div><span class="eyebrow">可操作模型</span><h2 id="modelTitle">把動畫中的因果關係交給你控制</h2></div><p id="modelIntro"></p></div><article class="model-card"><div class="model-visual" id="modelVisual"></div><div class="model-controls" id="modelControls"></div></article></section>
+<section class="practice-section"><div class="section-head"><div><span class="eyebrow">提取與遷移</span><h2>同概念、多情境、立即回饋</h2></div><div class="practice-toolbar"><button id="showQuick">核心 6 題</button><button id="showFinal">章末 8 題</button><button id="resetPractice">重新作答</button></div></div><div class="practice-grid" id="practiceGrid"></div></section>
+<footer class="footer">公開 MVP 的文字、圖形、動畫、練習與 PBL 均為原創；Bade／Parkin 教科書只作章節導航與 coverage 對齊。</footer>
 </div>
-
-<dialog id="menuDialog"><div class="sheet"><div class="sheet-head"><div><span class="step-label">選單</span><h2>你想去哪裡？</h2></div><button data-close="menuDialog">×</button></div><div class="menu-list">
-  <button id="openMap">學習地圖 <span>六個短單元</span></button>
-  <button id="openTextbook">教科書對照 <span>Bade／Parkin CH04</span></button>
-  <button id="toggleTeacher">切換教師授課 <span id="teacherStatus">目前：關閉</span></button>
-  <button id="toggleMotion">減少動態效果 <span id="motionStatus">目前：開啟</span></button>
-  <button id="fullscreenBtn">全螢幕 <span>適合教室投影</span></button>
-  <button id="resetBtn">重新開始 <span>清除本機進度</span></button>
-</div></div></dialog>
-
-<dialog id="mapDialog"><div class="sheet"><div class="sheet-head"><div><span class="step-label">學習地圖</span><h2>六幕學習旅程</h2></div><button data-close="mapDialog">×</button></div><p>地圖只用來快速跳轉；平常請按「下一幕」依序學習。</p><div id="mapList" class="map-list"></div></div></dialog>
-
-<dialog id="textbookDialog"><div class="sheet"><div class="sheet-head"><div><span class="step-label">課本對照</span><h2>Bade／Parkin 第 4 章</h2></div><button data-close="textbookDialog">×</button></div><p>平台協助你理解與操作；教科書保留完整的定義、章節脈絡與課後閱讀。</p><div class="textbook-list"><article class="textbook-item"><strong>4.1 需求</strong><p>需求量、需求法則、需求曲線，以及需求與需求量的區別。</p></article><article class="textbook-item"><strong>4.2 供給</strong><p>供給量、供給法則、供給曲線，以及供給與供給量的區別。</p></article><article class="textbook-item"><strong>4.3 市場均衡</strong><p>均衡價格與數量、短缺、過剩，以及價格調整。</p></article></div><p>公開 MVP 的文字、數據、圖形、練習與 PBL 均為原創，未公開出版社投影片、題庫或解答。</p></div></dialog>
-
-<dialog id="teacherDialog"><div class="sheet"><div class="sheet-head"><div><span class="step-label">教師提示</span><h2 id="teacherTitle">本幕教學提示</h2></div><button data-close="teacherDialog">×</button></div><div id="teacherContent" class="teacher-note"></div><div class="dialog-actions"><button id="timerBtn">開始計時</button><button id="teacherFullscreen" class="primary">進入全螢幕</button></div></div></dialog>
-<div id="toast" class="toast"></div>
-
-<script type="module" src="js/app.js"></script>
-</body>
-</html>
+<dialog id="chapterDialog"><div style="width:min(520px,calc(100vw - 24px));padding:24px;border-radius:24px;background:#102236;color:#f7fbff;border:1px solid rgba(255,255,255,.12)"><h2 style="margin-top:0">選擇章節 MVP</h2><div id="chapterDialogList" style="display:grid;gap:10px"></div><button id="closeDialog" style="width:100%;margin-top:16px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:white">關閉</button></div></dialog>
+<script src="js/chapter-data.js"></script><script src="js/platform.js"></script>
+</body></html>

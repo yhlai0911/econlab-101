@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "animations": [
+    {
+      "id": "ch03-opportunity-cost",
+      "chapter": 3,
+      "type": "concept-choice",
+      "title": "一週 168 小時：選擇、機會成本與 PPF",
+      "duration": 360,
+      "status": "composition-ready",
+      "composition": "media/ch03-opportunity-cost/composition/index.html",
+      "ttsModel": "gemini-3.1-flash-tts-preview",
+      "musicModel": "lyria-3-clip-preview"
+    },
+    {
+      "id": "ch04-market-clearing",
+      "chapter": 4,
+      "type": "micro-mechanism",
+      "title": "演唱會票價危機：需求、供給與均衡",
+      "duration": 390,
+      "status": "composition-ready",
+      "composition": "media/ch04-market-clearing/composition/index.html",
+      "ttsModel": "gemini-3.1-flash-tts-preview",
+      "musicModel": "lyria-3-clip-preview"
+    },
+    {
+      "id": "ch19-stagflation",
+      "chapter": 19,
+      "type": "macro-system",
+      "title": "能源衝擊下的青城市：AD、SRAS 與政策兩難",
+      "duration": 420,
+      "status": "composition-ready",
+      "composition": "media/ch19-stagflation/composition/index.html",
+      "ttsModel": "gemini-3.1-flash-tts-preview",
+      "musicModel": "lyria-3-clip-preview"
+    }
+  ]
+}

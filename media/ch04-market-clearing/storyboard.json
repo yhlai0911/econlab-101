@@ -1,0 +1,65 @@
+{
+  "chapter": 4,
+  "title": "演唱會票價危機：需求、供給與均衡",
+  "duration": 390,
+  "placement": "CH04 需求與供給基本定義之後、比較靜態題組之前",
+  "concept_ids": [
+    "demand-quantity",
+    "demand-shift",
+    "supply-horizon",
+    "equilibrium",
+    "shortage",
+    "allocation"
+  ],
+  "music_prompt": "Instrumental only, no vocals. Modern educational documentary underscore with light electronic pulse, soft pizzicato strings and restrained percussion around 88 BPM. Curious market energy, never dramatic, no drops, no dominant melody, clean spectrum for Mandarin narration.",
+  "scenes": [
+    {
+      "id": "s1",
+      "start": 0,
+      "end": 58,
+      "duration": 58,
+      "title": "低票價沒有消除稀少性",
+      "transcript": "audio/voice/s1.txt"
+    },
+    {
+      "id": "s2",
+      "start": 58,
+      "end": 128,
+      "duration": 70,
+      "title": "票價改變：沿需求曲線移動",
+      "transcript": "audio/voice/s2.txt"
+    },
+    {
+      "id": "s3",
+      "start": 128,
+      "end": 205,
+      "duration": 77,
+      "title": "偏好改變：需求曲線平行位移",
+      "transcript": "audio/voice/s3.txt"
+    },
+    {
+      "id": "s4",
+      "start": 205,
+      "end": 270,
+      "duration": 65,
+      "title": "供給要先說明時間範圍",
+      "transcript": "audio/voice/s4.txt"
+    },
+    {
+      "id": "s5",
+      "start": 270,
+      "end": 335,
+      "duration": 65,
+      "title": "短缺與過剩推動價格調整",
+      "transcript": "audio/voice/s5.txt"
+    },
+    {
+      "id": "s6",
+      "start": 335,
+      "end": 390,
+      "duration": 55,
+      "title": "票務制度就是配置制度",
+      "transcript": "audio/voice/s6.txt"
+    }
+  ]
+}
