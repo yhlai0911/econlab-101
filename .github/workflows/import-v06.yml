@@ -36,8 +36,11 @@ jobs:
 
       - name: Replace branch workspace and validate
         run: |
+          cp -a .github /tmp/econlab-current-github
           find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
           cp -a /tmp/econlab-v06/. .
+          rm -rf .github
+          cp -a /tmp/econlab-current-github .github
           python3 scripts/build_standalone.py
           python3 -m unittest discover -s tests -v
           for file in assets/*.js js/*.js; do node --check "$file"; done
