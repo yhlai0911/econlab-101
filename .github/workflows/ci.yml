@@ -1,0 +1,42 @@
+name: Validate MVP
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Extract and validate inline application
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          html = Path('index.html').read_text(encoding='utf-8')
+          assert '<html lang="zh-Hant">' in html
+          assert html.count('data-scene=') == 6
+          assert 'Bade／Parkin' in html
+          assert '均衡實驗室' in html
+          assert 'PBL 政策室' in html
+
+          match = re.search(r'<script>([\s\S]*?)</script>', html)
+          assert match, 'inline application script not found'
+          Path('/tmp/econlab-app.js').write_text(match.group(1), encoding='utf-8')
+          PY
+          node --check /tmp/econlab-app.js
+      - name: Static HTTP smoke test
+        run: |
+          python3 -m http.server 4173 >/tmp/econlab-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          sleep 1
+          curl --fail --silent http://127.0.0.1:4173/index.html | grep -q 'EconLab 101'
