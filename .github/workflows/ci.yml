@@ -1,4 +1,4 @@
-name: Validate MVP
+name: Validate three animation MVPs
 
 on:
   pull_request:
@@ -12,49 +12,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-
-      - name: Validate beginner-first structure
+          node-version: '22'
+      - name: Build standalone
+        run: python scripts/build_standalone.py
+      - name: Static and model tests
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
-
-          html = Path('index.html').read_text(encoding='utf-8')
-          assert '<html lang="zh-Hant">' in html
-          assert '一次只學一件事' in html
-          assert 'Bade／Parkin CH04' in html
-          assert 'assets/styles.css' in html
-          assert 'type="module" src="js/app.js"' in html
-
-          required = [
-              Path('assets/styles.css'),
-              Path('js/data.js'),
-              Path('js/visuals.js'),
-              Path('js/renderers.js'),
-              Path('js/app.js'),
-          ]
-          assert all(path.exists() for path in required)
-
-          app = Path('js/app.js').read_text(encoding='utf-8')
-          data = Path('js/data.js').read_text(encoding='utf-8')
-          renderers = Path('js/renderers.js').read_text(encoding='utf-8')
-          assert 'renderScene' in app
-          assert data.count("id: '") >= 6
-          assert '一次只判斷<em>一則新聞</em>' in renderers
-          PY
-
-          for file in js/*.js; do
-            node --check "$file"
-          done
-
+          python -m unittest discover -s tests -v
+          node --check assets/animation-runtime.js
+          node --check js/chapter-data.js
+          node --check js/platform.js
+          python -m py_compile scripts/*.py
       - name: Static HTTP smoke test
         run: |
           python3 -m http.server 4173 >/tmp/econlab-http.log 2>&1 &
-          server_pid=$!
-          trap 'kill "$server_pid"' EXIT
+          pid=$!
+          trap 'kill "$pid"' EXIT
           sleep 1
-          curl --fail --silent http://127.0.0.1:4173/index.html | grep -q 'EconLab 101'
-          curl --fail --silent http://127.0.0.1:4173/assets/styles.css | grep -q -- '--accent'
-          curl --fail --silent http://127.0.0.1:4173/js/app.js | grep -q 'renderScene'
+          curl --fail --silent http://127.0.0.1:4173/ | grep -q 'EconLab 101'
+          curl --fail --silent http://127.0.0.1:4173/media/video-manifest.json | grep -q 'macro-system'
