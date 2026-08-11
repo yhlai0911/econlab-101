@@ -21,9 +21,22 @@ jobs:
 
       - name: Reconstruct workspace archive
         run: |
-          cat .import/chunk-* | base64 --decode > /tmp/econlab-v04.tar.gz
+          cat \
+            .import/small-00 \
+            .import/small-01 \
+            .import/xz-01 \
+            .import/xz-02 \
+            .import/xz-03 \
+            .import/xz-04 \
+            .import/tail-05a \
+            .import/tail-05b \
+            .import/tail-06a \
+            .import/tail-06b \
+            .import/tail-07 \
+            | base64 --decode > /tmp/econlab-v04.tar.xz
+          echo "59f04a41fe280aeb7425dc9e433ad5a7b1be05b986c56ced76080e1af51ca78b  /tmp/econlab-v04.tar.xz" | sha256sum -c -
           mkdir -p /tmp/econlab-v04
-          tar -xzf /tmp/econlab-v04.tar.gz -C /tmp/econlab-v04
+          tar -xJf /tmp/econlab-v04.tar.xz -C /tmp/econlab-v04
 
       - name: Replace branch workspace
         run: |
