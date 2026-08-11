@@ -21,7 +21,15 @@ jobs:
 
       - name: Reconstruct and verify source archive
         run: |
-          cat .import-v06/part-* | base64 --decode > /tmp/econlab-v06-src.tar.xz
+          cat \
+            .import-v06/part-00a \
+            .import-v06/part-00b \
+            .import-v06/part-01 \
+            .import-v06/part-02 \
+            .import-v06/part-03 \
+            .import-v06/part-04 \
+            .import-v06/part-05 \
+            | base64 --decode > /tmp/econlab-v06-src.tar.xz
           echo "56351d3249cc53e097b0f5ee5f236296e7bfbf9955e7c494a2cfb634bccc2993  /tmp/econlab-v06-src.tar.xz" | sha256sum -c -
           mkdir -p /tmp/econlab-v06
           tar -xJf /tmp/econlab-v06-src.tar.xz -C /tmp/econlab-v06
