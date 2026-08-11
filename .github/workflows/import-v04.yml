@@ -1,0 +1,36 @@
+name: Import v0.4 workspace
+
+on:
+  push:
+    branches:
+      - refactor/book-spread-v04
+    paths:
+      - .import/ready
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refactor/book-spread-v04
+          fetch-depth: 0
+
+      - name: Reconstruct workspace archive
+        run: |
+          cat .import/chunk-* | base64 --decode > /tmp/econlab-v04.tar.gz
+          mkdir -p /tmp/econlab-v04
+          tar -xzf /tmp/econlab-v04.tar.gz -C /tmp/econlab-v04
+
+      - name: Replace branch workspace
+        run: |
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a /tmp/econlab-v04/. .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "refactor: publish v0.4 interactive book-spread lesson"
+          git push origin HEAD:refactor/book-spread-v04
